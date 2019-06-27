@@ -16,7 +16,6 @@
 package retrofit2;
 
 import javax.annotation.Nullable;
-
 import okhttp3.Headers;
 import okhttp3.Protocol;
 import okhttp3.Request;

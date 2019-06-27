@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         Retrofit build = new Retrofit.Builder()
                 .baseUrl("https://t.thortk.com/")
                 .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.createFormat())
+                .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
 

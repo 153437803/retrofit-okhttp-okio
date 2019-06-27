@@ -18,7 +18,6 @@ package retrofit2;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-
 import javax.annotation.Nullable;
 
 /**
@@ -66,9 +65,8 @@ public interface CallAdapter<R, T> {
      * Returns a call adapter for interface methods that return {@code returnType}, or null if it
      * cannot be handled by this factory.
      */
-    public abstract @Nullable
-    CallAdapter<?, ?> get(Type returnType, Annotation[] annotations,
-                          Retrofit retrofit);
+    public abstract @Nullable CallAdapter<?, ?> get(Type returnType, Annotation[] annotations,
+        Retrofit retrofit);
 
     /**
      * Extract the upper bound of the generic parameter at {@code index} from {@code type}. For

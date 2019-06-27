@@ -16,10 +16,8 @@
 package retrofit2;
 
 import java.io.IOException;
-
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.GuardedBy;
-
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.ResponseBody;
@@ -40,8 +38,7 @@ final class OkHttpCall<T> implements Call<T> {
   private volatile boolean canceled;
 
   @GuardedBy("this")
-  private @Nullable
-  okhttp3.Call rawCall;
+  private @Nullable okhttp3.Call rawCall;
   @GuardedBy("this") // Either a RuntimeException, non-fatal Error, or IOException.
   private @Nullable Throwable creationFailure;
   @GuardedBy("this")
@@ -131,7 +128,8 @@ final class OkHttpCall<T> implements Call<T> {
         try {
           callback.onResponse(OkHttpCall.this, response);
         } catch (Throwable t) {
-          t.printStackTrace();
+          throwIfFatal(t);
+          t.printStackTrace(); // TODO this is not great
         }
       }
 
@@ -143,7 +141,8 @@ final class OkHttpCall<T> implements Call<T> {
         try {
           callback.onFailure(OkHttpCall.this, e);
         } catch (Throwable t) {
-          t.printStackTrace();
+          throwIfFatal(t);
+          t.printStackTrace(); // TODO this is not great
         }
       }
     });
@@ -278,10 +277,21 @@ final class OkHttpCall<T> implements Call<T> {
 
   static final class ExceptionCatchingResponseBody extends ResponseBody {
     private final ResponseBody delegate;
+    private final BufferedSource delegateSource;
     @Nullable IOException thrownException;
 
     ExceptionCatchingResponseBody(ResponseBody delegate) {
       this.delegate = delegate;
+      this.delegateSource = Okio.buffer(new ForwardingSource(delegate.source()) {
+        @Override public long read(Buffer sink, long byteCount) throws IOException {
+          try {
+            return super.read(sink, byteCount);
+          } catch (IOException e) {
+            thrownException = e;
+            throw e;
+          }
+        }
+      });
     }
 
     @Override public MediaType contentType() {
@@ -293,16 +303,7 @@ final class OkHttpCall<T> implements Call<T> {
     }
 
     @Override public BufferedSource source() {
-      return Okio.buffer(new ForwardingSource(delegate.source()) {
-        @Override public long read(Buffer sink, long byteCount) throws IOException {
-          try {
-            return super.read(sink, byteCount);
-          } catch (IOException e) {
-            thrownException = e;
-            throw e;
-          }
-        }
-      });
+      return delegateSource;
     }
 
     @Override public void close() {

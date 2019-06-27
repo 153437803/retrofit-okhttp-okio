@@ -19,9 +19,7 @@ import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-
 import javax.annotation.Nullable;
-
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.http.Body;
@@ -41,8 +39,7 @@ import retrofit2.http.QueryMap;
  * into the {@link Retrofit} instance.
  */
 public interface Converter<F, T> {
-  @Nullable
-  T convert(F value) throws IOException;
+  @Nullable T convert(F value) throws IOException;
 
   /** Creates {@link Converter} instances based on a type and target usage. */
   abstract class Factory {

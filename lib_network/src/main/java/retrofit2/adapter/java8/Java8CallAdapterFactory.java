@@ -15,9 +15,6 @@
  */
 package retrofit2.adapter.java8;
 
-import android.annotation.TargetApi;
-import android.os.Build;
-
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.ParameterizedType;
@@ -63,7 +60,6 @@ public final class Java8CallAdapterFactory extends CallAdapter.Factory {
   private Java8CallAdapterFactory() {
   }
 
-  @TargetApi(Build.VERSION_CODES.N)
   @Override public @Nullable CallAdapter<?, ?> get(
       Type returnType, Annotation[] annotations, Retrofit retrofit) {
     if (getRawType(returnType) != CompletableFuture.class) {
@@ -100,7 +96,6 @@ public final class Java8CallAdapterFactory extends CallAdapter.Factory {
       return responseType;
     }
 
-    @TargetApi(Build.VERSION_CODES.N)
     @Override public CompletableFuture<R> adapt(final Call<R> call) {
       final CompletableFuture<R> future = new CompletableFuture<R>() {
         @Override public boolean cancel(boolean mayInterruptIfRunning) {
@@ -141,7 +136,6 @@ public final class Java8CallAdapterFactory extends CallAdapter.Factory {
       return responseType;
     }
 
-    @TargetApi(Build.VERSION_CODES.N)
     @Override public CompletableFuture<Response<R>> adapt(final Call<R> call) {
       final CompletableFuture<Response<R>> future = new CompletableFuture<Response<R>>() {
         @Override public boolean cancel(boolean mayInterruptIfRunning) {
