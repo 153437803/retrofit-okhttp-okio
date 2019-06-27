@@ -9,9 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/okhttp_3.14.2" />
-            <option value="$PROJECT_DIR$/okio_1.17.4" />
-            <option value="$PROJECT_DIR$/retrofit_2.5" />
+            <option value="$PROJECT_DIR$/lib_network" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

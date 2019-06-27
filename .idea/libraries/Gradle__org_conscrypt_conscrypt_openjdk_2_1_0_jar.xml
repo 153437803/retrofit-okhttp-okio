@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.conscrypt:conscrypt-openjdk:2.1.0@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.conscrypt/conscrypt-openjdk/2.1.0/d81766fc8d5474c4d25608eef26dae575deab1d6/conscrypt-openjdk-2.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.conscrypt/conscrypt-openjdk/2.1.0/b80990ce005e3fb1d5dcda4b9177d0b7bc11063/conscrypt-openjdk-2.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

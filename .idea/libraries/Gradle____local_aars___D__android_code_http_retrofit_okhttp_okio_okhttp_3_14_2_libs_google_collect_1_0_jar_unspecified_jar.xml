@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Gradle: __local_aars__:D.\android\code\http_retrofit_okhttp_okio\okhttp_3.14.2\libs\google-collect-1.0.jar:unspecified@jar">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/okhttp_3.14.2/libs/google-collect-1.0.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
